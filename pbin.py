@@ -1,13 +1,10 @@
-import os
-
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request, abort
 from flask.ext.sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
-
-app.debug = True
 
 class Paste(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,7 +14,7 @@ class Paste(db.Model):
         self.text = text
 
     def __repr__(self):
-        return '<Paste %s>' % self.id
+        return '<Paste {0}>'.format(self.id)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -28,10 +25,10 @@ def add():
     p = Paste(request.form['text'])
     db.session.add(p)
     db.session.commit()
-    return redirect(url_for('paste'), id=p.id)
+    return redirect(url_for('paste', id=p.id))
 
-@app.route('/p/<int:id>')
-def paste():
+@app.route('/<int:id>')
+def paste(id):
     p = Paste.query.get(id)
     if p is None:
         return abort(404)
