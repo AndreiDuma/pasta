@@ -32,4 +32,4 @@ def paste(id):
     p = Paste.query.get(id)
     if p is None:
         return abort(404)
-    return p.text
+    return render_template('paste.html', paste=p)

@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+pre {
+    margin: 0;
+}
+
+#strip {
+    width: 100%;
+    height: 10px;
+    background-color: #0078e7;
+}
+
+#content {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#paste_form {
+    text-align: center;
+}
+
+#paste_form > textarea {
+    width: 100%;
+    min-height: 400px;
+    resize: vertical;
+}
+
+#paste_form > button {
+    margin: 10px;
+}

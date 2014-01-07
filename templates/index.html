@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Pasta</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  </head>
+{% extends "layout.html" %}
 
-  <body>
-    <form action="{{ url_for('add') }}" method="post">
-      <textarea name="text" autofocus placeholder="Some pasta to store..."></textarea>
-      <button type="submit">Pasta</button>
-    </form>
-  </body>
-</html>
+{% block title %}Pasta{% endblock %}
+
+{% block content %}
+  <form id="paste_form" class="pure-form" action="{{ url_for('add') }}" method="post">
+    <textarea name="text" autofocus placeholder="Some pasta to store..."></textarea>
+    <button type="submit" class="pure-button pure-button-primary">Pasta!</button>
+  </form>
+{% endblock %}
